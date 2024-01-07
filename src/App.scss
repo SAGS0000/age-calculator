@@ -1,0 +1,148 @@
+@import "./styles/variables";
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main {
+  border: 1px solid black;
+  min-height: 100svh;
+  padding: 1rem;
+  @include flex-center;
+
+  .card {
+    min-width: $mobile-width;
+    background-color: $neutral-white;
+    padding: 2rem 1rem;
+    padding-bottom: 3rem;
+    border-radius: 1rem;
+
+    border-bottom-right-radius: 8rem;
+    &__age-input {
+      display: flex;
+      gap: 1rem;
+
+      .date {
+        flex: 1;
+        label {
+          font-size: 0.75rem;
+          font-weight: $font-weight-extra-bold;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+        input {
+          border: 1px solid $neutral-light-grey;
+          border-radius: 0.5rem;
+          padding: 0.8rem;
+          width: 100%;
+          font-size: 1rem;
+          font-weight: $font-weight-extra-bold;
+          color: $neutral-off-black;
+          &:hover {
+            border-color: $primary-purple;
+          }
+          &:focus {
+            outline: none;
+            border-color: $primary-purple;
+          }
+        }
+        &:has(.error) {
+          color: $primary-light-red;
+          input {
+            border-color: $primary-light-red;
+            &:focus {
+              border-color: $primary-purple;
+            }
+          }
+          .error {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: $font-weight-italic;
+            font-style: italic;
+          }
+        }
+      }
+    }
+    .button {
+      margin-block: 1.5rem;
+      position: relative;
+      @include flex-center;
+      .line {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        // transform: translateX(50%);
+        height: 1px;
+        z-index: 11;
+        background-color: $neutral-light-grey;
+      }
+      button {
+        z-index: 12;
+        background-image: url(./assets/images/icon-arrow.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 1.5rem;
+        width: 3.5rem;
+        height: 3.5rem;
+        border: none;
+        border-radius: 100%;
+        background-color: $primary-purple;
+        &:hover {
+          background-color: $neutral-off-black;
+        }
+        &:focus {
+          outline: none;
+          background-color: $neutral-off-black;
+        }
+      }
+    }
+    &__age-output {
+      font-size: 4rem;
+      font-weight: $font-weight-extra-bold;
+      color: $neutral-off-black;
+      font-style: italic;
+      line-height: 4.5rem;
+      span {
+        color: $primary-purple;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    .card {
+      padding: 3rem;
+      max-width: 700px;
+      // margin: 0 auto;
+      &__age-input {
+        width: 80%;
+        gap: 2rem;
+        .date {
+          flex-direction: column;
+          label {
+            // width: 100%;
+            // border: 1px solid black;
+          }
+          input {
+            // width: 50%;
+          }
+        }
+      }
+      .button {
+        margin-block: 2rem;
+        justify-content: flex-end;
+        button {
+          width: 4rem;
+          height: 4rem;
+        }
+      }
+      &__age-output {
+        font-size: 4rem;
+        line-height: 4.5rem;
+      }
+    }
+  }
+}
